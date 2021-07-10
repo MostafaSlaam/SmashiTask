@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.example.livesmashi.model.VideoModel" />
+
+        <variable
+            name="callback"
+            type="com.example.livesmashi.util.PlayerStateCallback" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/videoView"
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            app:on_state_change="@{callback}"
+            app:use_controller="true"
+            app:surface_type="texture_view"
+            app:hide_on_touch="false"
+            app:play_when_ready="@{false}"
+            item_index="@{model.url}"
+            app:controller_layout_id="@layout/exo_player_control_view_recycler"
+            app:video_link="@{model.url}" />
+
+
+    </LinearLayout>
+
+</layout>

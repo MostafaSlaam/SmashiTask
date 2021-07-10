@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.livesmashi.view.mainActivity.MainViewModel" />
+    </data>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="vertical"
+    >
+
+    <com.google.android.exoplayer2.ui.PlayerView
+        android:id="@+id/viedoView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:visibility="visible"
+        app:use_controller="true"
+        app:loader="@{progressBar}"
+        android:background="@color/black"
+        video_link="@{viewModel.urlLiveVideo}"
+        play_when_ready="@{true}"
+        item_index="@{viewModel.urlLiveVideo}"
+        app:controller_layout_id="@layout/exo_player_control_view"
+
+        >
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            />
+    </com.google.android.exoplayer2.ui.PlayerView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="20dp"
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="horizontal"
+        />
+
+    <Button
+        android:id="@+id/btn_viewDownloads"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="@string/view_downloads"
+        android:onClick="@{()->viewModel.onViewAllBtnClick()}"
+        android:backgroundTint="#2196F3"
+        />
+
+</LinearLayout>
+</layout>
